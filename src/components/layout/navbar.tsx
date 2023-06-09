@@ -1,36 +1,77 @@
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import React, { useState } from "react";
 
 const Navbar: React.FC = () => {
+  const [search, setSearch] = useState("");
   return (
     <div className="shadow-sm shadow-black/20">
-      <div className="container mx-auto flex h-fit w-full items-center justify-between gap-8 py-2">
-        <Image
-          src={"/logo.svg"}
-          alt={""}
-          width={0}
-          height={0}
-          className="h-14 w-14"
-        />
-        <div className="flex flex-row items-center justify-end gap-4">
-          <button className="bg-red-500/ group rounded px-2 py-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="group-hover:scale-125 group-hover:text-black-600"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>{" "}
-          </button>
-          <button className="bg-red-500/ group rounded px-2 py-1">
+      <div className="container mx-auto flex h-fit w-full items-center justify-between gap-8 py-1">
+        <Link href={"/"} className="rounded">
+          <Image
+            src={"/logo.svg"}
+            alt={""}
+            width={0}
+            height={0}
+            className="h-20 w-20"
+          />
+        </Link>
+        <div className="flex w-full flex-row items-center gap-2">
+          {/* <button className=" group rounded px-2 py-1"> */}
+          {/* </button> */}
+          <div className="flex w-full flex-row items-center gap-4 border-x border-x-black-600/30">
+            <div className="flex w-full flex-row items-center gap-2 px-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-black-600/75"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+
+              <input
+                placeholder="Search..."
+                className="w-full border-none p-2 outline-none"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.currentTarget.value);
+                }}
+              />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSearch("");
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={`text-black-600/75  ${
+                    search.length > 0 ? "visible" : "hidden"
+                  }`}
+                >
+                  <line x1="18" x2="6" y1="6" y2="18" />
+                  <line x1="6" x2="18" y1="6" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button className="group rounded px-2 py-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

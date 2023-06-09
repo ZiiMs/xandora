@@ -9,11 +9,9 @@ const Layout: React.FC<{ children: PropsWithChildren<ReactNode> }> = ({
   return (
     <div className="flex h-screen min-h-screen w-full flex-col">
       <Navbar />
-      <div className="flex h-full w-full flex-row">
+      <div className="container mx-auto flex flex-row">
         <Sidebar />
-        <div className="container mx-auto">
-          <div className="flex h-full w-full flex-row">{children}</div>
-        </div>
+        <div className="flex h-full w-full flex-row">{children}</div>
       </div>
       <Footer />
     </div>
