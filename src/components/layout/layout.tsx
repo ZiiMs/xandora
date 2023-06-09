@@ -7,15 +7,16 @@ const Layout: React.FC<{ children: PropsWithChildren<ReactNode> }> = ({
   children,
 }) => {
   return (
-    <main className="min-h-screen min-w-screen bg-white">
-      <div className="w-full h-full ">
-        <Navbar/>
-        <Sidebar/>
-        {children}
-        <Footer/>
-              </div>
-    </main>
+    <div className="flex h-screen min-h-screen w-full flex-col">
+      <Navbar />
+      <div className="flex h-full w-full flex-row">
+        <Sidebar />
+        <div className="container mx-auto">
+          <div className="flex h-full w-full flex-row">{children}</div>
+        </div>
+      </div>
+      <Footer />
+    </div>
   );
 };
-
 export default Layout;
