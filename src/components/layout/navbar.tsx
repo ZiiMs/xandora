@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
           {/* <button className=" group rounded px-2 py-1"> */}
           {/* </button> */}
           <div className="flex w-full flex-row items-center gap-4 border-x border-x-black-600/30">
-            <div className="flex w-full flex-row items-center gap-2 px-2">
+            <div className="group flex w-full flex-row items-center gap-2 px-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-black-600/75"
+                className="text-black-600/75 group-hover:scale-110"
               >
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.3-4.3" />
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
 
               <input
                 placeholder="Search..."
-                className="w-full border-none p-2 outline-none"
+                className="w-full border-none p-2 text-black-600/75 outline-none placeholder:text-black-300/75"
                 value={search}
                 onChange={(e) => {
                   setSearch(e.currentTarget.value);
