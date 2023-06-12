@@ -1,0 +1,30 @@
+[
+  {
+    "id": "color",
+    "name": "Color",
+    "hidden": true,
+    "values": [{ "id": "white", "label": "White" }]
+  },
+  {
+    "id": "style",
+    "name": "Style",
+    "hidden": true,
+    "values": [
+      { "id": "hoodie", "label": "Hoodie" },
+      { "id": "dressshirt", "label": "Dress Shirt" },
+      { "id": "tshirt", "label": "T-Shirt" }
+    ]
+  },
+  {
+    "id": "size",
+    "name": "Sizes",
+    "hidden": true,
+    "values": [
+      { "id": "xsmall", "label": "X-Small" },
+      { "id": "small", "label": "Small" },
+      { "id": "medium", "label": "Medium" },
+      { "id": "large", "label": "Large" },
+      { "id": "xlarge", "label": "X-Large" }
+    ]
+  }
+]
