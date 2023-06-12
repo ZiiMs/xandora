@@ -3,7 +3,14 @@
     "id": "color",
     "name": "Color",
     "hidden": true,
-    "values": [{ "id": "white", "label": "White" }]
+    "values": [
+      { "id": "black", "label": "Black" },
+      { "id": "orange", "label": "Orange" },
+      { "id": "red", "label": "Red" },
+      { "id": "blue", "label": "Blue" },
+      { "id": "pink", "label": "Pink" },
+      { "id": "white", "label": "White" }
+    ]
   },
   {
     "id": "style",

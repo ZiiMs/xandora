@@ -1,0 +1,22 @@
+[
+  {
+    "id": "whitet",
+    "label": "White T-Shirt",
+    "tags": {
+      "STYLE": ["tshirt"],
+      "COLOR": ["white"],
+      "SIZE": ["xsmall", "small", "medium", "large", "xlarge"]
+    },
+    "price": 24.99
+  },
+  {
+    "id": "whiteh",
+    "label": "White Hoodie",
+    "tags": {
+      "STYLE": ["hoodie"],
+      "COLOR": ["white", "black"],
+      "SIZE": ["small", "medium", "large", "xlarge"]
+    },
+    "price": 49.99
+  }
+]

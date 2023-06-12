@@ -14,32 +14,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import Sidebar, { type Category } from "~/components/layout/sidebar";
 import { env } from "~/env.mjs";
 import { useState } from "react";
+import productsData from "../data/products.json";
 const stripePromise = loadStripe(env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const Home: NextPage = () => {
-    const productsData = [
-        {
-            id: "whitet",
-            tags: {
-                STYLE: ["tshirt"],
-                COLOR: ["white"],
-                SIZE: ["xsmall", "small", "medium", "large", "xlarge"],
-            },
-            price: 24.99,
-            label: "White T-Shirt",
-        },
-        {
-            id: "whiteh",
-            tags: {
-                STYLE: ["hoodie"],
-                COLOR: ["white", "black"],
-                SIZE: ["small", "medium", "large", "xlarge"],
-            },
-            price: 49.99,
-            label: "White Hoodie",
-        },
-    ];
-
     const [activeFilters, setActiveFilters] = useState<{
         [key in Category as string]: string[];
     }>({ COLOR: [], STYLE: [], SIZE: [] });
@@ -56,7 +34,8 @@ const Home: NextPage = () => {
                 <Sidebar
                     activeFilters={activeFilters}
                     setActiveFilters={(data) => {
-                        const { tag, category } = data;
+                        const { tag } = data;
+                        const category = data.category.toString();
                         const temp = activeFilters;
 
                         if (!temp[category] || !temp[category]?.includes(tag.id)) {
