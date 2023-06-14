@@ -1,5 +1,49 @@
 [
   {
+    "id": "pinkt",
+    "label": "Pink T-Shirt",
+    "tags": {
+      "STYLE": ["tshirt"],
+      "COLOR": ["pink"],
+      "SIZE": ["xsmall", "small", "medium", "large", "xlarge"]
+    },
+    "image": "/images/tshirts/pink_t_front.png",
+    "price": 24.99
+  },
+  {
+    "id": "bluet",
+    "label": "Blue T-Shirt",
+    "tags": {
+      "STYLE": ["tshirt"],
+      "COLOR": ["blue"],
+      "SIZE": ["xsmall", "small", "medium", "large", "xlarge"]
+    },
+    "image": "/images/tshirts/blue_t_front.png",
+    "price": 24.99
+  },
+  {
+    "id": "oranget",
+    "label": "Orange T-Shirt",
+    "tags": {
+      "STYLE": ["tshirt"],
+      "COLOR": ["orange"],
+      "SIZE": ["xsmall", "small", "medium", "large", "xlarge"]
+    },
+    "image": "/images/tshirts/orange_t_front.png",
+    "price": 24.99
+  },
+  {
+    "id": "redt",
+    "label": "Red T-Shirt",
+    "tags": {
+      "STYLE": ["tshirt"],
+      "COLOR": ["red"],
+      "SIZE": ["xsmall", "small", "medium", "large", "xlarge"]
+    },
+    "image": "/images/tshirts/red_t_front.png",
+    "price": 24.99
+  },
+  {
     "id": "whitet",
     "label": "White T-Shirt",
     "tags": {
@@ -7,16 +51,18 @@
       "COLOR": ["white"],
       "SIZE": ["xsmall", "small", "medium", "large", "xlarge"]
     },
+    "image": "/images/tshirts/white_t_front.png",
     "price": 24.99
   },
   {
-    "id": "whiteh",
-    "label": "White Hoodie",
+    "id": "blackt",
+    "label": "Black T-Shirt",
     "tags": {
-      "STYLE": ["hoodie"],
-      "COLOR": ["white", "black"],
-      "SIZE": ["small", "medium", "large", "xlarge"]
+      "STYLE": ["tshirt"],
+      "COLOR": ["black"],
+      "SIZE": ["small", "medium", "large"]
     },
-    "price": 49.99
+    "image": "/images/tshirts/black_t_front.png",
+    "price": 24.99
   }
 ]
