@@ -1,13 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { loadStripe } from "@stripe/stripe-js";
 
 import Sidebar, { type Category } from "~/components/layout/sidebar";
-import { env } from "~/env.mjs";
-import { useEffect, useState } from "react";
 import productsData from "../data/products.json";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 type DataType = typeof productsData;
 
 const Home: NextPage = () => {
