@@ -9,13 +9,14 @@ export interface Item {
   image: string;
   description: string;
   price: number;
+  quantity?: number;
 }
 
 export interface ICheckoutCartContext {
-  id: string;
-  item: Item;
-  price: number;
+  item: Item[];
+  total: number;
   quantity: number;
+  showCart: boolean;
 }
 
 export enum CheckoutCartTypes {
@@ -24,7 +25,6 @@ export enum CheckoutCartTypes {
 }
 export type AddCheckoutAction = {
   type: typeof CheckoutCartTypes.ADDED;
-  id: string;
   item: Item;
   price: number;
   quantity: number;
@@ -34,5 +34,9 @@ export type RemoveCheckoutAction = {
   type: typeof CheckoutCartTypes.REMOVED;
   id: string;
 };
+
+// export type CountCheckoutAction = {
+//   type: typeof CheckoutCartTypes.COUNT;
+// };
 
 export type CheckoutActionTypes = AddCheckoutAction | RemoveCheckoutAction;

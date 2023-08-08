@@ -16,7 +16,7 @@ const Tshirt: NextPage = () => {
       return val.id === id;
     });
   });
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useCartDispatch();
 
@@ -42,7 +42,7 @@ const Tshirt: NextPage = () => {
       />
       <div className="flex h-full rounded bg-black-100/25 p-4">
         <div className="flex flex-row items-center justify-center">
-          <div className="flex h-full w-full flex-col justify-between p-4">
+          <div className="flex h-full w-full flex-col justify-between gap-8 p-4">
             <span className="self-center text-3xl font-bold text-black-800">
               {item.label}
             </span>
@@ -56,7 +56,7 @@ const Tshirt: NextPage = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       const valNumber = quantity - 1;
-                      if (valNumber < 0) {
+                      if (valNumber < 1) {
                         return;
                       }
                       setQuantity(valNumber);
@@ -81,11 +81,11 @@ const Tshirt: NextPage = () => {
               <button
                 className="w-full items-center justify-center rounded bg-red-700 py-4 text-xl font-bold hover:bg-red-700/90"
                 onClick={() => {
+                  if (quantity < 1) return;
                   dispatch({
                     type: CheckoutCartTypes.ADDED,
-                    item: item,
+                    item: { ...item, quantity: quantity },
                     price: item.price,
-                    id: item.id,
                     quantity: quantity,
                   });
                 }}

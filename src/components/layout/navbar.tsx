@@ -5,7 +5,8 @@ import { useCart } from "../context/cartContext";
 
 const Navbar: React.FC = () => {
   const [search, setSearch] = useState("");
-  const cartCount = useCart().length;
+  const cartCount = useCart().quantity;
+
   return (
     <div className="shadow-sm shadow-black/20">
       <div className="container mx-auto flex h-fit w-full items-center justify-between gap-8 py-1">

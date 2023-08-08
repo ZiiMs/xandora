@@ -1,0 +1,76 @@
+import React from "react";
+import { useCart } from "../context/cartContext";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { api } from "~/utils/api";
+
+const CheckoutDrawer: React.FC = () => {
+  const cart = useCart();
+  const stripe = useStripe();
+  const elements = useElements();
+  const { mutate: createPurchase, data: client_secret } =
+    api.purchase.purchase.useMutation();
+
+  if (!stripe) {
+    return;
+  }
+
+  const handlePurchase = async () => {
+    try {
+      if (!client_secret) return;
+      const { error, paymentIntent } = await stripe?.confirmCardPayment(
+        client_secret,
+        {
+          payment_method: {
+            card: elements?.getElement(CardElement),
+          },
+        }
+      );
+
+      if (error) {
+        console.error("Payment error:", error);
+      } else if (paymentIntent.status === "succeeded") {
+        console.log("succeeded", paymentIntent);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  if (!cart.showCart) return null;
+  return (
+    <div className="flex h-full w-max flex-row justify-end bg-black-50">
+      <div className="w-full">
+        {client_secret ? (
+          <div className="flex w-full flex-col">
+            <button
+              onClick={() => {
+                handlePurchase()
+                  .then(() => console.log("Success"))
+                  .catch((e) => console.warn(e));
+              }}
+            >
+              Purchase
+            </button>
+          </div>
+        ) : (
+          <div>
+            {cart.item.map((item, i) => (
+              <div key={i}>
+                <button
+                  onClick={() => {
+                    createPurchase({
+                      amount: 25,
+                    });
+                  }}
+                >
+                  {item.label}:{item.quantity}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+export default CheckoutDrawer;

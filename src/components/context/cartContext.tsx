@@ -1,17 +1,23 @@
 import {
-  type PropsWithChildren,
-  type ReactNode,
   createContext,
   useContext,
   useReducer,
+  type PropsWithChildren,
+  type ReactNode,
 } from "react";
 import {
   CheckoutCartTypes,
+  type Item,
   type CheckoutActionTypes,
   type ICheckoutCartContext,
 } from "~/types/item.interface";
 
-export const CartContext = createContext<ICheckoutCartContext[]>([]);
+export const CartContext = createContext<ICheckoutCartContext>({
+  item: [],
+  showCart: false,
+  total: 0,
+  quantity: 0,
+});
 export const CartDispatchContext = createContext<
   React.Dispatch<CheckoutActionTypes>
 >(() => {
@@ -31,25 +37,72 @@ export const CartProvider: React.FC<{
   );
 };
 
+const incrementItemQauntity = (
+  Cart: Item[],
+  quantity: number,
+  id: string,
+  action: Item
+) => {
+  const index = Cart.findIndex((item) => {
+    return item.id === id;
+  });
+  const foundItem = Cart[index];
+  if (foundItem !== undefined) {
+    return [
+      ...Cart.slice(0, index),
+      {
+        ...foundItem,
+        quantity: (foundItem.quantity ?? 0) + quantity,
+      },
+      ...Cart.slice(index + 1),
+    ];
+  } else {
+    return [...Cart, { ...action, quantity: quantity }];
+  }
+};
+
 const cartReducer = (
-  cart: ICheckoutCartContext[],
+  cart: ICheckoutCartContext,
   action: CheckoutActionTypes
-): ICheckoutCartContext[] => {
-  console.log("Workgin", action);
+): ICheckoutCartContext => {
   switch (action.type) {
     case CheckoutCartTypes.ADDED: {
-      return [
-        ...cart,
-        {
-          id: action.id,
-          item: action.item,
-          price: action.price,
-          quantity: action.quantity,
-        },
-      ];
+      // const clonedItems = [...cart.item];
+      // const updateItem = clonedItems.find((val) => {
+      //   if (val.id === action.item.id && val.quantity) {
+      //     console.log(
+      //       "Count",
+      //       val.quantity,
+      //       action.quantity,
+      //       val.quantity + action.quantity
+      //     );
+      //     val.quantity = val.quantity + action.quantity;
+      //     return val;
+      //   } else {
+      //     return { ...action.item, quantity: action.quantity };
+      //   }
+      // });
+      // console.log("UpdateItem", updateItem?.quantity);
+      // if (updateItem) {
+      //   return {};
+      // }
+
+      return {
+        item: incrementItemQauntity(
+          cart.item,
+          action.quantity,
+          action.item.id,
+          action.item
+        ),
+        total: cart.total + action.price,
+        quantity: action.quantity + cart.quantity,
+        showCart: true,
+      };
     }
     case CheckoutCartTypes.REMOVED: {
-      return cart.filter((i) => i.id !== action.id);
+      const temp = cart;
+      temp.item = cart.item.filter((i) => i.id !== action.id);
+      return temp;
     }
     default: {
       throw Error("Unknown action: ", action);
@@ -65,4 +118,9 @@ export const useCartDispatch = () => {
   return useContext(CartDispatchContext);
 };
 
-const initialCart: ICheckoutCartContext[] = [];
+const initialCart: ICheckoutCartContext = {
+  quantity: 0,
+  item: [],
+  total: 0,
+  showCart: false,
+};
