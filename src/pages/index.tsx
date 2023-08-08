@@ -21,8 +21,11 @@ const Home: NextPage = () => {
     while (n > 0 && r.length) {
       const i = rand(r.length); // 1
       swap(r, i, r.length - 1); // 2
-      yield r.pop(); // 3
-      n = n - 1;
+      const popped = r.pop(); // 3
+      if (popped !== undefined) {
+        yield popped;
+        n = n - 1;
+      }
     }
   }
 
