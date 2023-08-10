@@ -7,7 +7,6 @@ import { Elements } from "@stripe/react-stripe-js";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { env } from "~/env.mjs";
-const stripePromise = loadStripe(env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 const Layout: React.FC<{ children: PropsWithChildren<ReactNode> }> = ({
   children,
 }) => {
@@ -19,9 +18,7 @@ const Layout: React.FC<{ children: PropsWithChildren<ReactNode> }> = ({
           <div className="container mx-auto flex flex-row">
             <div className="flex h-fit w-full flex-row">{children}</div>
           </div>
-          <Elements stripe={stripePromise}>
-            <CheckoutDrawer />
-          </Elements>
+          <CheckoutDrawer />
         </div>
         <Footer />
       </div>
